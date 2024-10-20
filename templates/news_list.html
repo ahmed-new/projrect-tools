@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}News Articles{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home'%}">Tools.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'movie'%}">Your Movie <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'generate_image'%}">Generate your image</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Updated news
+                </a>
+                <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <a class="dropdown-item" href="{% url 'news_en' %}">English news</a>
+                    <a class="dropdown-item" href="{% url 'news_ar' %}">Arabic news</a>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'currency'%}">Check currency</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'games'%}">Play games</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+    <div class="container mt-4">
+        <h1 class="text-light">Today's News</h1>
+        
+        <!-- Search Form -->
+        <form method="GET" class="mb-4">
+            <div class="form-group">
+                <label for="query" class="text-light">Search:</label>
+                <input type="text" name="query" id="query" class="form-control" placeholder="Enter keywords...">
+            </div>
+            <div class="form-group">
+                <label for="category" class="text-light">Category:</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="">All Categories</option>
+                    <option value="business">Business</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="health">Health</option>
+                    <option value="science">Science</option>
+                    <option value="sports">Sports</option>
+                    <option value="technology">Technology</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <!-- Display Articles -->
+        <div class="row justify-content-center">
+            {% for article in articles %}
+                <div class="col-md-6 mb-4"> <!-- تغيير الحجم إلى عمودين -->
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ article.url }}" target="_blank" class="text-light">{{ article.title }}</a>
+                            </h5>
+                            <p class="card-text"><strong>Author:</strong> {{ article.author|default:"Not available" }}</p>
+                            <p class="card-text"><strong>Published at:</strong> {{ article.publishedAt|date:"Y-m-d H:i" }}</p>
+                            <p class="card-text">{{ article.description|default:"No description available" }}</p>
+                        </div>
+                        <a href="{{ article.url }}" target="_blank">
+                            <img src="{{ article.urlToImage }}" alt="{{ article.title }}" class="card-img-bottom article-image">
+
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-light">No articles available at the moment.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+body {
+    background-color: #1a1b1d; /* لون الخلفية الفاتح */
+    font-family: Arial, sans-serif; /* نوع الخط */
+    color: #701818; /* لون النص */
+}
+
+h1 {
+    margin-bottom: 30px; /* مسافة أسفل العنوان */
+    font-size: 2.5rem; /* حجم خط العنوان */
+    color: #2a5ebe; /* لون العنوان */
+}
+
+textarea {
+    border-radius: 5px; /* زوايا دائرية */
+    border: 1px solid #ced4da; /* لون إطار textarea */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+}
+
+textarea:focus {
+    border-color: #007bff; /* لون إطار textarea عند التركيز */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* ظل عند التركيز */
+}
+
+button {
+    padding: 10px 20px; /* مسافة داخلية للزر */
+    border-radius: 5px; /* زوايا دائرية للزر */
+    transition: background-color 0.3s ease; /* انتقال سلس لتغيير لون الخلفية */
+}
+
+button:hover {
+    background-color: #0056b3; /* لون خلفية الزر عند التمرير */
+}
+
+.alert {
+    border-radius: 5px; /* زوايا دائرية لتنبيهات الخطأ */
+}
+
+.generated-image {
+    margin-top: 20px; /* مسافة أعلى الصورة الناتجة */
+    border: 2px solid #007bff; /* إطار للصورة الناتجة */
+    border-radius: 5px; /* زوايا دائرية للصورة */
+    max-width: 100%; /* تأكد من أن الصورة لا تتجاوز عرض الحاوية */
+}

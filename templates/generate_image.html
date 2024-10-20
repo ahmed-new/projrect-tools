@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Text to Image Conversion{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/image.css' %}">
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home'%}">Tools.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'movie'%}">Your Movie <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'generate_image'%}">Generate your image</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Updated news
+                </a>
+                <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <a class="dropdown-item" href="{% url 'news_en' %}">English news</a>
+                    <a class="dropdown-item" href="{% url 'news_ar' %}">Arabic news</a>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'currency'%}">Check currency</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'games'%}">Play games</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="container text-center mt-4">
+        <h1>Text to Image Conversion</h1>
+        <div id="loading" style="display:none;" ><h5 style="color: crimson; font-family: cursive;" >We Are Loading Your Image Now......</h5></div>
+        <form id="image-form" method="post" action="{% url 'generate_image' %}">
+            {% csrf_token %}
+            <textarea name="text" rows="4" placeholder="Enter your text here" class="form-control mb-3"></textarea>
+            <button type="submit" class="btn btn-primary">Generate Image</button>
+        </form>
+
+        {% if error %}
+            <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+
+        {% if image %}
+            <h2>Generated Image:</h2>
+            <img src="data:image/png;base64,{{ image }}" alt="Generated Image" class="generated-image" style="max-width: 300px;">
+        {% endif %}
+
+       
+    </div>
+
+    <script>
+        const form = document.getElementById('image-form');
+        const loading = document.getElementById('loading');
+
+        form.onsubmit = function() {
+            loading.style.display = 'block';
+        };
+    </script>
+{% endblock %}

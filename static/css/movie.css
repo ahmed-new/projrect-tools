@@ -1,0 +1,97 @@
+/* إعدادات عامة */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    background-image: url("/static/images/r.jpg"); /* صورة الخلفية */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* تنسيق عنوان الصفحة */
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* تنسيق النموذج */
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 300px; /* عرض المدخل */
+}
+
+/* زر البحث */
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* لون خلفية الزر عند التمرير */
+}
+
+/* تنسيق تفاصيل الفيلم */
+.movie-details {
+    background: rgba(187, 175, 175, 0.9); /* خلفية شفافة */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 0; /* إزالة التوسيع للوسط */
+    float: left; /* يجعل العناصر تتجه إلى اليسار */
+}
+
+.movie-image {
+    width: 100%; /* عرض الصورة */
+    max-width: 600px; /* أقصى عرض للصورة */
+    border-radius: 4px;
+}
+
+/* تنسيق قائمة الأفلام */
+ul {
+    list-style-type: none; /* إزالة نقاط القائمة */
+    padding: 0;
+}
+
+li {
+    background: rgb(104, 91, 91);
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* تنسيق الرسالة عند عدم وجود أفلام */
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* إضافة ألوان للخطوط */
+h5 {
+    color: #007bff; /* لون النص للعناوين */
+}
+
+p {
+    color: #441111; /* لون النص للفقرات */
+}

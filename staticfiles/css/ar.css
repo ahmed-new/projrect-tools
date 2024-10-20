@@ -1,0 +1,13 @@
+body {
+    background-color: #000; /* خلفية الصفحة */
+    color: #fff; /* لون النص */
+}
+
+.card {
+    border: none; /* إزالة الحدود */
+}
+
+.article-image {
+    width: 100%; /* عرض الصورة 100% */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+}

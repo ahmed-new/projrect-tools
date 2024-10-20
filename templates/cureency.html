@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    h1 {
+        font-family: cursive;
+        font-size: 50px;
+        font-weight: 400;
+        color: rgb(129, 88, 37);
+    }
+    p {
+        font-family: cursive;
+        color: brown;
+    }
+    body {
+        justify-content: center;
+        align-items: center;
+        background-color: #271a1a4f;
+    }
+    input {
+        text-align: center;
+        font-weight: 400;
+        margin: auto;
+        align-items: center;
+        width: 25%;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home'%}">Tools.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'movie'%}">Your Movie <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'generate_image'%}">Generate your image</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Updated news
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                        <a class="dropdown-item" href="{% url 'news_en' %}">English news</a>
+                        <a class="dropdown-item" href="{% url 'news_ar' %}">Arabic news</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'currency'%}">Check currency</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'games'%}">Play games</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    
+    <br>
+    <h1>Put the amount down and check the changing currency</h1>
+    <div>
+        <p>USD</p>
+        <input type="text" id='usd' placeholder="USD"><br><br>
+        <p>EGP</p>
+        <input type="text" id='pound' placeholder="EGP"><br><br>
+        <p>EUR</p>
+        <input type="text" id='euro' placeholder="EUR">
+    </div>
+
+    <script>
+        let usd = document.getElementById("usd");
+        let pound = document.getElementById("pound");
+        let euro = document.getElementById("euro");
+
+        pound.onkeyup = function() {
+            usd.value = (pound.value / 48.45).toFixed(2);
+            euro.value = (pound.value / 53.19).toFixed(2);
+        };
+
+        usd.onkeyup = function() {
+            pound.value = (usd.value * 48.6);
+            euro.value = (pound.value / 53.19).toFixed(2);
+        };
+
+        euro.onkeyup = function() {
+            pound.value = (euro.value * 53.19);
+            usd.value = (pound.value / 48.45).toFixed(2);
+        };
+    </script>
+
+{% endblock %}

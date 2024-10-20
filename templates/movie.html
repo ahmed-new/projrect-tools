@@ -1,0 +1,90 @@
+<!-- your_movie.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Movie Details
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/movie.css' %}">
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home'%}">Tools.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'movie'%}">Your Movie <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'generate_image'%}">Generate your image</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Updated news
+                </a>
+                <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <a class="dropdown-item" href="{% url 'news_en' %}">English news</a>
+                    <a class="dropdown-item" href="{% url 'news_ar' %}">Arabic news</a>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'currency'%}">Check currency</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'games'%}">Play games</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Search for a Movie</h1>
+
+    <!-- Form for searching movies -->
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="searched" placeholder="Type your movie name here!" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+
+    <!-- Movie details -->
+    {% if context.error %}
+        <p class="error">{{ context.error }}</p>
+    {% else %}
+        <div class="movie-details">
+            <h2 style="color: blueviolet;">Title: {{ context.original_title }}</h2>
+            <p><strong>Release Date:</strong> {{ context.release_date }}</p>
+            <p><strong>Language:</strong> {{ context.original_language }}</p>
+            <p><strong>Overview:</strong> {{ context.overview }}</p>
+
+            {% if context.backdrop_path %}
+                <img src="https://image.tmdb.org/t/p/w500{{ context.backdrop_path }}" alt="Movie Image" class="movie-image">
+            {% endif %}
+
+            <!-- Movie reviews -->
+            <h3 style="color: brown;">Reviews:</h3>
+            {% if context.reviews %}
+                <ul>
+                    {% for review in context.reviews %}
+                        <li>
+                            <strong style="color: rgb(24, 185, 51);">{{ review.author }}</strong> says: <br>
+                            <p>{{ review.content }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews available for this movie.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

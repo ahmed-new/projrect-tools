@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: project
+    env: python
+    plan: free
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn project.wsgi --log-file -"
+    pythonVersion: "3.12.4"

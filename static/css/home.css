@@ -1,0 +1,103 @@
+/* إعدادات أساسية */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #070606;
+    color: #0f0e0e;
+}
+
+/* قسم الترحيب */
+.hero-section {
+    background-image: url("/static/images/one.jpg");
+    background-size: cover;
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+}
+
+/* قسم الخدمات */
+.services-section {
+    background-image: url("/static/images/two.jpeg");
+    background-size: cover;
+    padding: 60px 0;
+    color: white;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.service-card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.service-card:hover {
+    background-color: #e0f7fa;
+    color: blue;
+    transform: scale(1.05); /* تكبير العنصر قليلاً */
+    box-shadow: 0px 4px 20px rgba(0, 0, 255, 0.2); /* إضافة ظل أزرق */
+    transition: all 0.3s ease;
+}
+
+
+/* قسم الشهادات */
+.testimonials {
+    background-image: url('path/to/testimonials-background.jpg');
+    background-size: cover;
+    padding: 60px 0;
+    color: white;
+    text-align: center;
+}
+
+/* قسم الاتصال */
+.contact-section {
+    background-image: url('path/to/contact-background.jpg');
+    background-size: cover;
+    padding: 60px 0;
+    color: rgb(230, 220, 220);
+    text-align: center;
+}
+
+/* أيقونات التواصل الاجتماعي */
+.social-icons a {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+.social-icons a:hover i {
+    color: blue;
+}
+
+
+/* استجابة التصميم للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .hero-section, .services-section, .testimonials, .contact-section {
+        padding: 40px 0;
+    }
+
+    .service-card {
+        padding: 15px;
+    }
+}
+
+/* تنسيق الجملة الترحيبية */
+.welcome-text {
+    font-size: 2em;
+    font-weight: bold;
+    animation: colorChange 2s infinite;
+}
+
+/* تأثير تغيير اللون */
+@keyframes colorChange {
+    0% { color: rgb(0, 132, 255); }
+    50% { color: white; }
+    100% { color: rgb(0, 132, 255); }
+}
